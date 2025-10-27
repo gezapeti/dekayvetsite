@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veterinary Oncology & Cytology — Dr. Placeholder</title>
+  <style>
+    :root{
+      --primary:#0b4a82; /* deep vet blue */
+      --primary-2:#0f62a5;
+      --accent:#2ea3f2;
+      --bg:#f2f6fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    header{
+      background:linear-gradient(180deg,var(--primary) 0%, var(--primary-2) 100%);
+      color:#fff;
+      padding:64px 20px 32px;
+      position:relative;
+      text-align:center;
+    }
+    .lang-switch{
+      position:absolute; right:16px; top:16px;
+      display:flex; gap:8px; background:rgba(255,255,255,.12);
+      padding:6px 8px; border-radius:10px; align-items:center;
+    }
+    .lang-btn{
+      display:inline-flex; align-items:center; gap:6px; cursor:pointer;
+      border:0; background:transparent; color:#fff; font-weight:600; font-size:.9rem;
+      padding:4px 6px; border-radius:6px; opacity:.9;
+    }
+    .lang-btn[aria-pressed="true"]{background:rgba(255,255,255,.18); opacity:1}
+    .flag{width:16px;height:12px;display:inline-block;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.15) inset}
+    .flag.hu{background:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="2"><rect width="3" height="2" fill="%23ffffff"/><rect width="3" height="0.666" y="0" fill="%23ce2939"/><rect width="3" height="0.666" y="0.666" fill="%23ffffff"/><rect width="3" height="0.666" y="1.334" fill="%2324773d"/></svg>')
+      center/cover no-repeat}
+    .flag.en{background:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="c"><path d="M0,0 v30 h60 v-30 z"/></clipPath><path d="M0,0 v30 h60 v-30 z" fill="%23012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="%23fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" clip-path="url(%23c)" stroke="%23C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="%23fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="%23C8102E" stroke-width="6"/></svg>')
+      center/cover no-repeat}
+
+    .hero{
+      max-width:1000px; margin:0 auto; display:grid; gap:24px;
+      grid-template-columns:120px 1fr; align-items:center; padding:0 12px;
+    }
+    .avatar{
+      width:120px;height:120px;border-radius:50%;background:#dbeafe;
+      border:4px solid rgba(255,255,255,.6);
+      display:flex;align-items:center;justify-content:center;
+      color:#0b4a82;font-weight:700; letter-spacing:.5px;
+    }
+    .hero h1{margin:0;font-size:2rem}
+    .tag{margin:6px 0 0;opacity:.95}
+    nav{
+      background:#083a6a; display:flex; justify-content:center; gap:20px; padding:10px 12px;
+    }
+    nav a{color:#dbeafe;text-decoration:none;font-weight:600;padding:6px 8px}
+    nav a:hover{color:#fff}
+    main{max-width:1000px;margin:32px auto;background:var(--card);border-radius:12px;box-shadow:0 10px 30px rgba(2,22,44,.08);padding:28px}
+    section+section{margin-top:18px;padding-top:18px;border-top:1px solid #e5e7eb}
+    h2{color:var(--primary);margin:0 0 8px}
+    .grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:1fr 1fr}
+    .pill{display:inline-block;background:#e6f2fd;color:#0b4a82;border:1px solid #cfe7fb;padding:6px 10px;border-radius:999px;font-weight:600;font-size:.9rem}
+    ul{margin:0 0 0 18px}
+    .card{
+      background:#f8fbff;border:1px solid #e6eef8;border-radius:10px;padding:16px
+    }
+    .contact a{color:var(--primary-2);text-decoration:none}
+    .contact a:hover{text-decoration:underline}
+    footer{max-width:1000px;margin:24px auto 40px;color:var(--muted);text-align:center;font-size:.92rem}
+
+    .lang{display:none}
+    .lang.active{display:block}
+    @media (max-width:720px){
+      .hero{grid-template-columns:1fr; text-align:center}
+      .avatar{margin:0 auto}
+      .grid-2{grid-template-columns:1fr}
+      main{padding:20px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button class="lang-btn" data-lang="en" aria-pressed="true" aria-label="Switch to English">
+        <span class="flag en" aria-hidden="true"></span><span>EN</span>
+      </button>
+      <button class="lang-btn" data-lang="hu" aria-pressed="false" aria-label="Váltás magyarra">
+        <span class="flag hu" aria-hidden="true"></span><span>HU</span>
+      </button>
+    </div>
+
+    <div class="hero">
+      <div class="avatar">PHOTO</div>
+      <div>
+        <h1 class="lang lang-en active">Dr. <span class="name">Firstname Lastname</span>, DVM, PhD</h1>
+        <h1 class="lang lang-hu">Dr. <span class="name">Keresztnév Vezetéknév</span>, állatorvos, PhD</h1>
+
+        <p class="tag lang lang-en active">Veterinary Oncology & Cytology • 10+ years clinical experience • PhD in Animal Oncology</p>
+        <p class="tag lang lang-hu">Állatorvosi onkológia és citológia • 10+ év klinikai tapasztalat • PhD állatorvosi onkológiából</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- EN Navigation -->
+  <nav class="lang lang-en active" aria-label="Primary">
+    <a href="#about-en">About</a>
+    <a href="#services-en">Services</a>
+    <a href="#process-en">Process</a>
+    <a href="#credentials-en">Credentials</a>
+    <a href="#contact-en">Contact</a>
+  </nav>
+
+  <!-- HU Navigation -->
+  <nav class="lang lang-hu" aria-label="Elsődleges">
+    <a href="#about-hu">Rólam</a>
+    <a href="#services-hu">Szolgáltatások</a>
+    <a href="#process-hu">Folyamat</a>
+    <a href="#credentials-hu">Végzettségek</a>
+    <a href="#contact-hu">Kapcsolat</a>
+  </nav>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about-en" class="lang lang-en active">
+      <h2>About</h2>
+      <div class="grid grid-2">
+        <div>
+          I diagnose and treat cancer in companion animals and provide rapid, precise cytology for general practices and referral clinics.
+          The focus is evidence-based care, clear communication, and practical treatment plans that respect quality of life.
+        </div>
+        <div class="card">
+          <span class="pill">Clinical focus</span>
+          <ul>
+            <li>Medical oncology for dogs and cats</li>
+            <li>Diagnostic cytology and sample triage</li>
+            <li>Tumor staging, treatment planning, follow-up</li>
+            <li>Owner counseling and second opinions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-hu" class="lang lang-hu">
+      <h2>Rólam</h2>
+      <div class="grid grid-2">
+        <div>
+          Kedvenc állatok daganatos betegségeinek diagnosztikájával és kezelésével foglalkozom,
+          valamint gyors és pontos citológiai vizsgálatokat nyújtok háziorvosi és beutaló praxisok számára.
+          A hangsúly a bizonyítékokon alapuló ellátáson, az egyértelmű kommunikáción és az életminőséget tiszteletben tartó kezelési terveken van.
+        </div>
+        <div class="card">
+          <span class="pill">Szakmai fókusz</span>
+          <ul>
+            <li>Kutyák és macskák onkológiai ellátása</li>
+            <li>Diagnosztikai citológia és mintavételi triázs</li>
+            <li>Staging, terápiás tervezés, utánkövetés</li>
+            <li>Tulajdonosi tanácsadás, második vélemény</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services-en" class="lang lang-en active">
+      <h2>Services</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <strong>Oncology Consultations</strong>
+          <ul>
+            <li>Case review, staging strategy, prognosis</li>
+            <li>Chemotherapy protocols and monitoring</li>
+            <li>Palliative care and pain management</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Cytology & Diagnostics</strong>
+          <ul>
+            <li>Fine-needle aspirates and smear evaluation</li>
+            <li>Sample quality feedback and next-step advice</li>
+            <li>Report turnaround targets: 24–48 hours</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Collaboration</strong>
+          <ul>
+            <li>Support for general practitioners</li>
+            <li>Referral case co-management</li>
+            <li>Owner-facing explanations and options</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Second Opinions</strong>
+          <ul>
+            <li>Independent review of diagnosis and plan</li>
+            <li>Risk–benefit discussion tailored to the case</li>
+            <li>Quality-of-life centered recommendations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="services-hu" class="lang lang-hu">
+      <h2>Szolgáltatások</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <strong>Onkológiai konzultáció</strong>
+          <ul>
+            <li>Esetértékelés, staging, prognózis</li>
+            <li>Kemoterápiás protokollok és monitorozás</li>
+            <li>Palliatív ellátás és fájdalomcsillapítás</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Citológia és diagnosztika</strong>
+          <ul>
+            <li>Vékonyszúrásos mintavétel és kenetek értékelése</li>
+            <li>Mintaminőség visszajelzés, következő lépések</li>
+            <li>Leletkiadás célidő: 24–48 óra</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Együttműködés praxisokkal</strong>
+          <ul>
+            <li>Háziorvosi praxisok támogatása</li>
+            <li>Beutalt esetek közös menedzsmentje</li>
+            <li>Tulajdonosi tájékoztatás és opciók</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Második vélemény</strong>
+          <ul>
+            <li>Diagnózis és kezelési terv független felülvizsgálata</li>
+            <li>Kockázat–haszon megbeszélés az adott esetre</li>
+            <li>Életminőség-központú javaslatok</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process-en" class="lang lang-en active">
+      <h2>How it works</h2>
+      <ol>
+        <li>Referral or direct inquiry with history and test results.</li>
+        <li>Consultation: options, expected outcomes, costs.</li>
+        <li>Diagnostics and staging as indicated.</li>
+        <li>Treatment plan and monitoring schedule.</li>
+      </ol>
+    </section>
+
+    <section id="process-hu" class="lang lang-hu">
+      <h2>Folyamat</h2>
+      <ol>
+        <li>Beutalás vagy közvetlen megkeresés kórelőzménnyel és vizsgálati eredményekkel.</li>
+        <li>Konzultáció: lehetőségek, várható kimenetek, költségek.</li>
+        <li>Szükséges diagnosztika és staging.</li>
+        <li>Kezelési terv és ellenőrzési ütemezés.</li>
+      </ol>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section id="credentials-en" class="lang lang-en active">
+      <h2>Credentials</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <strong>Education</strong>
+          <ul>
+            <li>PhD, Animal Oncology</li>
+            <li>DVM, Veterinary Medicine</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Experience</strong>
+          <ul>
+            <li>10+ years in veterinary oncology and cytology</li>
+            <li>Collaborations with referral centers</li>
+            <li>Peer-reviewed presentations and teaching</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="credentials-hu" class="lang lang-hu">
+      <h2>Végzettségek</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <strong>Tanulmányok</strong>
+          <ul>
+            <li>PhD, állatorvosi onkológia</li>
+            <li>Állatorvos (DVM)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Tapasztalat</strong>
+          <ul>
+            <li>10+ év onkológiában és citológiában</li>
+            <li>Együttműködés beutaló központokkal</li>
+            <li>Szakmai előadások és oktatás</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact-en" class="lang lang-en active contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:vet.oncology@example.com">vet.oncology@example.com</a></p>
+      <p>Phone: <a href="tel:+3612345678">+36 1 234 5678</a></p>
+      <p>Clinic or service area: <em>City / Region</em></p>
+      <p>For cytology submissions: include history, lesion site, sample method, and contact details.</p>
+    </section>
+
+    <section id="contact-hu" class="lang lang-hu contact">
+      <h2>Kapcsolat</h2>
+      <p>E-mail: <a href="mailto:vet.oncology@example.com">vet.oncology@example.com</a></p>
+      <p>Telefon: <a href="tel:+3612345678">+36 1 234 5678</a></p>
+      <p>Rendelő vagy ellátási terület: <em>Város / Régió</em></p>
+      <p>Citológiai minták beküldésekor kérjük: kórelőzmény, elváltozás helye, mintavételi mód, elérhetőség.</p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="y"></span> Veterinary Oncology & Cytology — Dr. Placeholder
+  </footer>
+
+  <script>
+    (function(){
+      const html = document.documentElement;
+      const btns = document.querySelectorAll('.lang-btn');
+      const blocksEN = document.querySelectorAll('.lang-en');
+      const blocksHU = document.querySelectorAll('.lang-hu');
+
+      function setLang(lang){
+        const isEN = lang === 'en';
+        html.setAttribute('lang', lang);
+        blocksEN.forEach(el=>el.classList.toggle('active', isEN));
+        blocksHU.forEach(el=>el.classList.toggle('active', !isEN));
+        btns.forEach(b=>b.setAttribute('aria-pressed', b.dataset.lang===lang ? 'true' : 'false'));
+        localStorage.setItem('vet_lang', lang);
+      }
+      btns.forEach(b=>b.addEventListener('click', ()=>setLang(b.dataset.lang)));
+      const preferred = localStorage.getItem('vet_lang') || ((navigator.language||'en').startsWith('hu') ? 'hu':'en');
+      setLang(preferred);
+
+      document.getElementById('y').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
